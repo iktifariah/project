@@ -70,25 +70,6 @@ td{
 </body>
 </html>
 
-<body>
-<center>
-<h1>Lecturer's Registration</h1>
-<form action="php_action/lect_register.php" method="post">
-<center>
-	<label>Lecturer's Name</label>
-        <label><input name="lect_name" type = "text" size="40"/></label>
-    <br><br>
-     
-      <p>
-        <input type="submit" name="submit" value="Submit"/>
-        <input type="reset" name="reset" value="Reset" id="reset"/>
-      </p>      
-</form>
-</center>
-<br>
-
-
-
 <html>
 <style>
 body{
@@ -102,13 +83,18 @@ th{
 	}
 </style>
 
-<center><h1>Lecturer's Info</h1></center>
+<center><h1>Info</h1></center>
 
 <body>
 <div align="center">    
 <table width="974" height="58" border="1">
 <tr>
 <th width="128">Lecturer Name</th>
+<th width="128">Batch</th>
+<th width="128">Class</th>
+<th width="128">Subject Code</th>
+<th width="128">Subject Name</th>
+<th width="95">Choose</th>
 <th width="95">Edit</th>
 <th width="97">Delete</th>
 </tr>
@@ -132,6 +118,11 @@ while($row=mysql_fetch_array($run))
 	echo"<tr align='center'>
 				
 				<td>$showlect_name</td>
+				<td>$showbatch_name</td>
+				<td>$showclass_name</td>
+				<td>$showsub_id</td>
+				<td>$showsub_name</td>
+				<td><a href='timetable.php?edit=$showlect_id'>Choose</td>
 				<td><a href='editlect.php?edit=$showlect_id'>Edit</td>
 				<td><a href='lecturer.php?del=$showlect_id'>Delete</td>
 			</tr>";
