@@ -102,30 +102,29 @@ $result4 = mysqli_query($con, $query4);
 <h1>Lecturer's Registration</h1>
 <form action="php_action/choosesub_action.php" method="post">
 <center>
-	
        <label>Lecturer:</label>
-        <select>
+        <select name="lect_id">
         <option value="">~~ Choose Lecturer ~~</option>
         <?php while($row1 = mysqli_fetch_array($result1)):;?>
-        <option value="<?php echo $row1[1];?>"><?php echo $row1[1];?></option>
+        <option value="<?php echo $row1['lect_id'];?>"><?php echo $row1[1];?></option>
         <?php endwhile;?>
         </select>
         
     <br><br>
         <label>Batch:</label>
-        <select>
+        <select name="batch_id">
         <option value="">~~ Choose Batch ~~</option>
         <?php while($row2 = mysqli_fetch_array($result2)):;?>
-        <option value="<?php echo $row2[1];?>"><?php echo $row2[1];?></option>
+        <option value="<?php echo $row2['batch_id'];?>"><?php echo $row2[1];?></option>
         <?php endwhile;?>
         </select>
         
          <br><br>
         <label>Class:</label>
-        <select>
+        <select name="class_id">
         <option value="">~~ Choose Class ~~</option>
         <?php while($row3 = mysqli_fetch_array($result3)):;?>
-        <option value="<?php echo $row3[1];?>"><?php echo $row3[1];?></option>
+        <option value="<?php echo $row3['class_id'];?>"><?php echo $row3[1];?></option>
         <?php endwhile;?>
         </select>
     <br><br>
@@ -166,7 +165,7 @@ function filterTable($query)
                 </tr>
                 <?php while($row = mysqli_fetch_array($SearchResult)):?>
                 <tr>
-                    <td><input type="checkbox" name="subject[]" value="<?php echo $row['sub_name']; ?>" ><br> <input type="hidden" name="sub[]" value="<?php echo $row['sub_id']; ?>" /></td>
+                    <td><input type="checkbox" name="subject[]" value="<?php echo $row['sub_id']; ?>" ><br></td>
                 	<td><?php echo $row['sub_id'];?></td>
                     <td><?php echo $row['sub_name'];?></td>
 

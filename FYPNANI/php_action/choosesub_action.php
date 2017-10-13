@@ -1,42 +1,9 @@
-
-
 <?php
-//connect to database
-$con=mysql_connect('localhost','root','');
 
-$db=mysql_select_db('ttms');
+include "config.php";
 
-
-
-if($con)
-
-{
-
-	echo 'success ';
-
-}
-
-else
-
-{die('error');
-
-}
-
-
-
-if($db)
-
-{
-
-	echo ' <br> successful ';
-
-}
-
-else
-
-{die('error .not found db');
-
-}
+// var_dump($_POST);
+// die();
 
 if(isset($_POST['submit']))
 {
@@ -49,10 +16,12 @@ if(isset($_POST['submit']))
 
    // $query=mysql_query("INSERT INTO lecturer(lect_id, lect_name) VALUES('".$_SESSION['SESS_MEMBER_ID']."','$_POST[lect_name]')");
 	
-	mysql_query("INSERT INTO lect_register(lect_id,batch_id,class_id,sub_id) VALUES('".$_SESSION['SESS_MEMBER_ID']."', '$_POST[batch_id]', '$_POST[class_id]', '$_POST[sub_id]')");
+foreach ($_POST['subject'] as $value) {
+	mysqli_query($con, "INSERT INTO lect_register(lect_id,batch_id,class_id,sub_id) VALUES('{$_POST['lect_id']}', '{$_POST['batch_id']}', '{$_POST['class_id']}', '$value')");
+}
 
 echo '<br> data inserted...';
-header("location:http://localhost/FYPNANI/display_choosesub.php");
+header("location:../display_choosesub.php");
 
 
 }?>
