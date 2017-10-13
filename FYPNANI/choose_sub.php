@@ -104,7 +104,7 @@ $result4 = mysqli_query($con, $query4);
 <center>
 	
        <label>Lecturer:</label>
-        <select>
+        <select name="lect">
         <option value="">~~ Choose Lecturer ~~</option>
         <?php while($row1 = mysqli_fetch_array($result1)):;?>
         <option value="<?php echo $row1[1];?>"><?php echo $row1[1];?></option>
@@ -113,7 +113,7 @@ $result4 = mysqli_query($con, $query4);
         
     <br><br>
         <label>Batch:</label>
-        <select>
+        <select name="batch">
         <option value="">~~ Choose Batch ~~</option>
         <?php while($row2 = mysqli_fetch_array($result2)):;?>
         <option value="<?php echo $row2[1];?>"><?php echo $row2[1];?></option>
@@ -122,7 +122,7 @@ $result4 = mysqli_query($con, $query4);
         
          <br><br>
         <label>Class:</label>
-        <select>
+        <select name="class">
         <option value="">~~ Choose Class ~~</option>
         <?php while($row3 = mysqli_fetch_array($result3)):;?>
         <option value="<?php echo $row3[1];?>"><?php echo $row3[1];?></option>
