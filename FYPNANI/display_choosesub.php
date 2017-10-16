@@ -1,4 +1,8 @@
- <?php session_start();?>
+ <?php 
+
+include __dir__ . "/php_action/config.php";
+
+ ?>
 <!doctype html>
 <html>
 <head>
@@ -100,31 +104,28 @@ th{
 </tr>
 <?php
 
-$link = mysql_connect("localhost","root","");
-mysql_select_db("ttms",$link);
 
 if(isset($_GET['del'])){
 	$del_lect_id = $_GET['del'];
-if(mysql_query("Delete from lecturer where lect_id = '$del_lect_id'")){
+if(mysqli_query($con, "Delete from lecturer where lect_id = '$del_lect_id'")){
 	echo "<script> alert('Lecturer : $del_lect_id ... Deleted Successful.')</script>";
 	}
 }
-$run = mysql_query("Select * from lecturer");
-while($row=mysql_fetch_array($run))
+$run = mysqli_query($con, "Select lect_name, batch_name, class_name, sub_name, lect_register.sub_id from lect_register INNER JOIN subject ON subject.sub_id = lect_register.sub_id INNER JOIN lecturer ON lecturer.lect_id = lect_register.lect_id INNER JOIN class ON class.class_id = lect_register.class_id INNER JOIN batch ON batch.batch_id = lect_register.batch_id;");
+
+while($row=mysqli_fetch_array($run))
 {
-	$showlect_id = $row[0];
-	$showlect_name = $row[1];
 	
 	echo"<tr align='center'>
 				
-				<td>$showlect_name</td>
-				<td>$showbatch_name</td>
-				<td>$showclass_name</td>
-				<td>$showsub_id</td>
-				<td>$showsub_name</td>
-				<td><a href='timetable.php?edit=$showlect_id'>Choose</td>
-				<td><a href='editlect.php?edit=$showlect_id'>Edit</td>
-				<td><a href='lecturer.php?del=$showlect_id'>Delete</td>
+				<td>{$row['lect_name']}</td>
+				<td>{$row['batch_name']}</td>
+				<td>{$row['class_name']}</td>
+				<td>{$row['sub_id']}</td>
+				<td>{$row['sub_name']}</td>
+				<td><a href='timetable.php?edit='>Choose</td>
+				<td><a href='editlect.php?edit='>Edit</td>
+				<td><a href='lecturer.php?del='>Delete</td>
 			</tr>";
 		
 		
